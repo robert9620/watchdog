@@ -23,7 +23,7 @@ public class WatchDog {
                 timer = 10;
                 thread2.start();
             } else{
-                System.out.println("wathdog czeka");
+                System.out.println("watchdog czeka");
                 timer--;
             }
             Main.view.setCounter(timer);

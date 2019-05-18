@@ -4,14 +4,16 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class View extends JFrame {
-    private int frameWidth = 500;
-    private int frameHeight = 500;
+    private int frameWidth = 340;
+    private int frameHeight = 130;
 
     private JButton spoilButton;
     private JLabel watchDogTextField;
     private JLabel watchDogCounterTextField;
     private JLabel CPUTextField;
     private JLabel CPURestartedField;
+    private JLabel CPUWorksField;
+    private JLabel CPUWorksColor;
 
     public View(String name) throws HeadlessException {
         super(name);
@@ -28,7 +30,7 @@ public class View extends JFrame {
 
         spoilButton = new JButton("Zepsuj procesor");
         spoilButton.setSize(spoilButton.getPreferredSize());
-        spoilButton.setLocation(100,100);
+        spoilButton.setLocation(100,70);
         spoilButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 System.out.println("Psuje procesor");
@@ -37,7 +39,7 @@ public class View extends JFrame {
         });
         this.add(spoilButton);
 
-        watchDogTextField = new JLabel("Watchdog");
+        watchDogTextField = new JLabel("Watchdog:");
         watchDogTextField.setSize(watchDogTextField.getPreferredSize());
         watchDogTextField.setLocation(10,10);
         this.add(watchDogTextField);
@@ -47,7 +49,7 @@ public class View extends JFrame {
         watchDogCounterTextField.setLocation(10,30);
         this.add(watchDogCounterTextField);
 
-        CPUTextField = new JLabel("CPU");
+        CPUTextField = new JLabel("CPU:");
         CPUTextField.setSize(CPUTextField.getPreferredSize());
         CPUTextField.setLocation(100,10);
         this.add(CPUTextField);
@@ -56,6 +58,18 @@ public class View extends JFrame {
         CPURestartedField.setSize(CPURestartedField.getPreferredSize());
         CPURestartedField.setLocation(100,30);
         this.add(CPURestartedField);
+
+        CPUWorksField = new JLabel("Procesor działa?:");
+        CPUWorksField.setSize(CPUWorksField.getPreferredSize());
+        CPUWorksField.setLocation(220,10);
+        this.add(CPUWorksField);
+
+        CPUWorksColor = new JLabel("");
+        CPUWorksColor.setSize(16,16);
+        CPUWorksColor.setBackground(Color.green);
+        CPUWorksColor.setOpaque(true);
+        CPUWorksColor.setLocation(266,30);
+        this.add(CPUWorksColor);
 
         this.setVisible(true);
     }
@@ -68,5 +82,9 @@ public class View extends JFrame {
     void setRestarted(int restarted){
         CPURestartedField.setText("Restartowany: "+ restarted);
         CPURestartedField.setSize(CPURestartedField.getPreferredSize());
+    }
+
+    public void setCPUWorksColor(Color color) {
+        CPUWorksColor.setBackground(color);
     }
 }

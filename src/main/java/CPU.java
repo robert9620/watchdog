@@ -1,3 +1,4 @@
+import java.awt.*;
 import java.util.*;
 import java.io.*;
 
@@ -19,6 +20,7 @@ public class CPU {
     private static PrintWriter output;
 
     public CPU(){
+        Main.view.setCPUWorksColor(Color.GREEN);
         Main.view.setRestarted(pc);
         pc++;
         System.out.println("Odpalenie procesora nr: " + pc);
@@ -26,21 +28,22 @@ public class CPU {
 
     synchronized void run() {
         while(true){
+            try {
+                sleep(6000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
             if(!error){
-                try {
-                    sleep(6000);
-                    WatchDog.timer = 10;
-                    Main.view.setCounter(WatchDog.timer);
-                    System.out.println("Zrestartowanie odliczania w watchdog przez procesor numer: " + pc);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
+                WatchDog.timer = 10;
+                Main.view.setCounter(WatchDog.timer);
+                System.out.println("Zrestartowanie odliczania w watchdog przez procesor numer: " + pc);
             }
         }
     }
 
     void spoil(){
         error = true;
+        Main.view.setCPUWorksColor(Color.RED);
     }
 
     public CPU(InputStream memInputStream, OutputStream memOutputStream, int instructionsToInterrupt) {

@@ -31,6 +31,8 @@ public class Main {
     }
 
     static void spoilCPU(){
+        System.out.println("timer:"+WatchDog.timer);
         CPU.activeProcessor.spoil();
+        System.out.println("timer2:"+WatchDog.timer);
     }
 }
